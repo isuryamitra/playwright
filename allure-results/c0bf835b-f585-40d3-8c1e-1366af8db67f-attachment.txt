@@ -1,0 +1,2 @@
+Option3 is present: true
+Option2 checkbox is present: true

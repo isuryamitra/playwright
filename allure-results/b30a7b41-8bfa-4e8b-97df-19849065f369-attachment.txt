@@ -1,0 +1,7 @@
+First label text: 
+                 Radio1
+                
+Smith row values: Rahul Shetty
+                    Master Selenium Automation in simple Python Language
+                    25
+Saved desktop screenshot to ./test-results/desktop-1765127803888.png
