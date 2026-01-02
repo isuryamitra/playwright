@@ -38,7 +38,6 @@ test('AutomationPractice — radio selection and screenshots', async ({ page }) 
   }
 });
 
-
 test('Test 2 ', async ({ page }) => {
   // Navigate to the sample page used across demos in this repo
   await page.goto('https://rahulshettyacademy.com/AutomationPractice/');

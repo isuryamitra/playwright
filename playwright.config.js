@@ -5,13 +5,13 @@ export default defineConfig({
   testDir: './tests',          // folder containing your test files
   timeout: 50000,               // max time per test
   retries: 1,                   // retry failed tests
-  reporter: [['list'], ['allure-playwright']], // terminal + Allure
+  reporter: [['html'], ['allure-playwright']], // terminal + Allure
   use: {
     headless: false,            // run browser in headed mode for debugging
     viewport: null,
     actionTimeout: 10000,
     ignoreHTTPSErrors: true,
-    screenshot: 'on',
+    screenshot: 'only-on-failure',
     outputDir: './test-results',  // screenshot on
     video: 'retain-on-failure',
     trace: 'off'      // video on failure
