@@ -7,8 +7,12 @@ export default defineConfig({
   retries: 1,                   // retry failed tests
   reporter: [['html'], ['allure-playwright']], // terminal + Allure
   use: {
-    headless: false,            // run browser in headed mode for debugging
+    headless: true,            // run browser in headed mode for debugging
     viewport: null,
+    launchOptions:
+    {
+      args: ['--start-maximized']
+    },
     actionTimeout: 10000,
     ignoreHTTPSErrors: true,
     screenshot: 'only-on-failure',
@@ -18,8 +22,8 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'chromium'
+      //use: { ...devices['Desktop Chrome'] },
     },
     // Add more projects if needed (firefox, webkit)
   ],
