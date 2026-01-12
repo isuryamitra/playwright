@@ -9,6 +9,8 @@ on:
 jobs:
   playwright:
     runs-on: windows-latest
+    env:
+      APP_URL: https://testautomationpractice.blogspot.com/ 
 
     steps:
       - name: Checkout code
@@ -26,7 +28,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npx playwright test test2.spec.js
 
       - name: Upload Playwright report
         if: always()
