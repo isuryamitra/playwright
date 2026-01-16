@@ -1,0 +1,28 @@
+apiVersion: v1alpha
+kind: playwright
+
+metadata:
+  name: Playwright Windows Tests
+  tags:
+    - github
+    - ci
+
+spec:
+  region: eu-central-1       # or eu-central-1
+  concurrency: 2           # number of parallel sessions
+  playwright:
+    version: 10.9.4
+    nodeVersion: 20
+
+  suites:
+    - name: Playwright Tests
+      testMatch: "**/tests/**/*.spec.js"   # your Playwright test files
+      platformName: Windows 11
+      browserName: chromium
+      browserVersion: latest
+      capabilities:
+        name: "GitHub Windows Playwright Test"
+        build: "build-${GITHUB_RUN_ID}"
+        screenResolution: "1920x1080"
+        video: true
+        screenshot: true
