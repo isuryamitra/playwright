@@ -1,16 +1,21 @@
 name: Playwright Sauce Tests - Windows
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
   sauce-playwright-windows:
     runs-on: windows-latest
+
     steps:
       # 1️⃣ Checkout repo
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Setup Node.js
+      # 2️⃣ Setup Node 20
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -18,11 +23,14 @@ jobs:
 
       # 3️⃣ Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm config set registry https://registry.npmjs.org/
+          npm cache clean --force
+          npm install --save-dev playwright @saucelabs/playwright-runner
 
       # 4️⃣ Run Sauce Playwright tests
       - name: Run Sauce Playwright tests
-        run: npx @saucelabs/playwright --yml .sauce/sauce-playwright.yml
+        run: npx @saucelabs/playwright-runner --yml .sauce/sauce-playwright.yml
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
@@ -30,3 +38,10 @@ jobs:
       # 5️⃣ Generate Playwright HTML report
       - name: Generate Playwright Report
         run: npx playwright show-report
+
+      # 6️⃣ Upload Playwright report as artifact
+      - name: Upload Playwright Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: playwright-report/
