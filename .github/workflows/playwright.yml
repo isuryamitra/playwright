@@ -22,7 +22,7 @@ jobs:
 
       # 4️⃣ Run Sauce Playwright tests
       - name: Run Sauce Playwright tests
-        run: npx @saucelabs/playwright-runner --yml .sauce/sauce-playwright.yml
+        run: npx @saucelabs/playwright --yml .sauce/sauce-playwright.yml
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
